@@ -11,7 +11,7 @@
     <form action="/google">
     <p>
     <label for="username">User Name</label>
-    <input id="username" name="username" type="text" placeholder="Enter User Name">
+    <input id="username" name="username" type="text" placeholder="Enter User Name" minlength="5">
     </p>
     <p>
     <label for="password">PASSWORD</label>
@@ -32,7 +32,7 @@
      <!-- form to search on google -->
       <form action="https://www.google.com/search">
       <label for="search">Search Here</label>
-      <input id="search" name="q" type="text" placeholder="Google">
+      <input id="search" name="q" type="text" placeholder="Google" required>
       <button>Submit</button>
     </form>
     <br>
@@ -41,7 +41,7 @@
     <!-- form to search on google -->
     <form action="https://www.reddit.com/search">
     <label for="search1">Search Here</label>
-    <input id="search1" name="q" type="text" placeholder="Reddit">
+    <input id="search1" name="q" type="text" placeholder="Reddit" required>
     <button>Submit</button>
     </form>
 
@@ -57,9 +57,9 @@
     <h2>Radio Buttons</h2>
     <p>Do you Agree the terms and conditions</p>
     <form action="/google">
-        <input type="radio" id="yes" name="Agree" value="YES">
+        <input type="radio" id="yes" name="Agree" value="YES" required>
         <label for="yes">YES</label>
-        <input type="radio" id="no" name="Agree" value="NO">
+        <input type="radio" id="no" name="Agree" value="NO" required>
         <label for="no">NO</label>
         <button>SUBMIT</button>
     </form>
@@ -82,7 +82,7 @@
     <label for="vol">VOLUME</label>
     <input type="range" name="volume" id="vol" min="0" max="10" step="2">
     <button>Submit</button>
-    <textarea name="requests" id="req">Requests</textarea>
+    <textarea name="requests" id="req" required>Requests</textarea>
     </form>
 
 
