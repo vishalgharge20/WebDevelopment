@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forms</title>
+</head>
+<body>
+    <h1>Form Demo</h1>
+
+    <form action="/google">
+    <p>
+    <label for="username">User Name</label>
+    <input id="username" name="username" type="text" placeholder="Enter User Name">
+    </p>
+    <p>
+    <label for="password">PASSWORD</label>
+    <input id="password" name="Password" type="password" placeholder="ENTER PASSWORD">
+    </p>
+    <button type="button">SUBMIT</button>
+    <br> <br>
+    <!-- Another way to create a button -->
+    <input type="submit" value="Click Me Button">
+    </form> 
+    <hr>
+    <!-- Not inside a form -->
+     <button>Submit</button>
+     <hr>
+     <br>
+     <br>
+
+     <!-- form to search on google -->
+      <form action="https://www.google.com/search">
+      <label for="search">Search Here</label>
+      <input id="search" name="q" type="text" placeholder="Google">
+      <button>Submit</button>
+    </form>
+    <br>
+    <hr>
+    <br>
+    <!-- form to search on google -->
+    <form action="https://www.reddit.com/search">
+    <label for="search1">Search Here</label>
+    <input id="search1" name="q" type="text" placeholder="Reddit">
+    <button>Submit</button>
+    </form>
+
+    <h2>Checkbox</h2>
+    <form action="/google">
+        <label for="yes">YES</label>
+        <input id="yes" type="checkbox" name="Yes">    
+        
+        <label for="no">NO</label>
+        <input id="no" type="checkbox" name="NO" checked>    
+    </form>
+    
+    <h2>Radio Buttons</h2>
+    <p>Do you Agree the terms and conditions</p>
+    <form action="/google">
+        <input type="radio" id="yes" name="Agree" value="YES">
+        <label for="yes">YES</label>
+        <input type="radio" id="no" name="Agree" value="NO">
+        <label for="no">NO</label>
+        <button>SUBMIT</button>
+    </form>
+
+    <h2>SELECT YOUR SHIRT SIZE</h2>
+    <form action="/google">
+        <label for="size">Shirt Size</label>
+        <select name="ShirtSize" id="size">
+            <option value="M">Medium</option>
+            <option value="L" selected>Large</option>
+            <option value="XL">Xtra Large</option>
+        </select>
+        <p>
+        <button>SUBMIT</button>
+        </p>
+    </form>
+
+    <h3>RANGE</h3>
+    <form action="/vol">
+    <label for="vol">VOLUME</label>
+    <input type="range" name="volume" id="vol" min="0" max="10" step="2">
+    <button>Submit</button>
+    <textarea name="requests" id="req">Requests</textarea>
+    </form>
+
+
+
+
+
+
+
+</body>
+</html>
