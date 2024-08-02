@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RaceRegistration</title>
+</head>
+<body>
+    <header>
+        <h1>Race Registration!</h1>
+    </header>
+    <main>
+        <form action="/google">
+            <section>
+                <label for="firstname">First Name</label>
+                <input type="text" id="firstname" name="first_name" required minlength="3" maxlength="20">
+                
+                <label for="lastname">Last Name</label>
+                <input type="text" id="lastname" name="last_name" required minlength="3" maxlength="20">
+            </section>
+            <p>Select a Race</p>
+            <section>
+                <div>
+                    <input type="radio" name="selectRace" id="Fun Run 5k" value="Fun Run 5k" required>
+                    <label for="Fun Run 5k">Fun Run 5k</label>
+                </div>
+                
+                <div>
+                    <input type="radio" name="selectRace" id="Half Marathon" value="Half Marathon" readonly >
+                    <label for="Half Marathon">Half Marathon</label>
+                </div>
+                
+                <div>
+                    <input type="radio" name="selectRace" id="Full Marathon" value="Full Marathon" required>
+                    <label for="Full Marathon">Full Marathon</label>
+                </div>
+            </section>
+            <section>
+                <label for="email">Email</label>
+                <input type="email" id="email" name="Email" required>
+                
+                <label for="pass">Password</label>
+                <input type="password" id="pass" name="Password" required minlength="8" maxlength="16">
+            </section>
+
+            <label for="age">Select Age Group</label>
+            <select name="ageGroup" id="age" required>
+                <option value="<18">Under 18</option>
+                <option value="18to30" selected>18-30</option>
+                <option value=">30">Above 30</option>
+            </select> 
+
+            <div>
+                <button>Register!</button>
+            </div>  
+            
+
+        <form action="/google">
+    </main>
+</body>
+</html>
