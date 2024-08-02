@@ -1,0 +1,19 @@
+h1{
+    text-align: center ;
+    color: sandybrown;
+    letter-spacing: 5PX;
+}
+button{
+    background-color: aquamarine;
+    border: 2px;
+    font-weight: 700;
+    font-size: larger;
+}
+
+h2{
+    letter-spacing: 2PX;
+}
+
+p{
+    line-height: 2;
+}
