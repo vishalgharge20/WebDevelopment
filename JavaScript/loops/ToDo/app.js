@@ -1,17 +1,27 @@
+
+function displayList(){
+        for(i=0;i<todoList.length;i++){
+            console.log(`${i}: ${todoList[i]}`)
+        }
+}
 let todoList = [];
 
 let userinput = prompt("What would you want to do?")
 while(userinput!=='quit'){
     if(userinput==='list'){
-        console.log(todoList)
+        console.log("***********")
+        displayList()
+        console.log("***********")
     }
     else if(userinput==='add'){
         let newTask= prompt("Enter a new Task that you would want to add")
         todoList.push(newTask)
-        console.log(todoList)
+        // console.log(todoList)
     }
     else if(userinput==='del'){
-        console.log(todoList)
+        console.log("***********")
+        displayList()
+        console.log("***********")
         let delTask = parseInt(prompt("Enter the index number of the Task that you want to del"))
             if (delTask >= 0 && delTask < todoList.length) {
             todoList.splice(delTask, 1);
@@ -23,6 +33,7 @@ while(userinput!=='quit'){
     userinput = prompt("What would you want to do?");
 }
 console.log("Thank you for using the To-Do List app!");
+
 
 
 

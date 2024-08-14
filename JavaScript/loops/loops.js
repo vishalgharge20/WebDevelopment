@@ -66,11 +66,11 @@
 // }
 // console.log("File Unlocked")
 
-let input = prompt("Enter Something")
-while(true){
-    input = prompt(input);
-    if(input.toLowerCase() === "stop copying me"){
-        break;
-    }
-}
-console.log("You Win")
+// let input = prompt("Enter Something")
+// while(true){
+//     input = prompt(input);
+//     if(input.toLowerCase() === "stop copying me"){
+//         break;
+//     }
+// }
+// console.log("You Win")
