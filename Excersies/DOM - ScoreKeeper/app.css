@@ -1,0 +1,182 @@
+/* 
+#container, #imageAndText, #textBackground, #textBelowImg, #mainCont {
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    background-color: #f8f9fa;
+}
+
+#container{
+    margin: 4em auto; /* Top margin and center alignment 
+    width: 30em;
+    height: 29em;
+    background-color: aquamarine;
+}
+
+#pingPongImg{
+    margin: 0;
+    padding: 0;
+    height: 15em;
+    width: 30em;
+}
+
+#textBelowImg{
+    margin: 0;
+    padding: 0;
+    font: 1.5em sans-serif;
+}
+
+#textBackground{
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    background-color: aliceblue;
+    border-bottom-color: black;
+
+}
+
+p{
+    margin: 0;
+    padding: 0;
+}
+
+#mainCont{
+    margin: 0;
+    padding: 0;
+    padding-left: 1em;
+    background-color: antiquewhite;
+    padding-top: 1em;
+    height: 12.5em;
+    width: 30em;
+}
+
+span{
+    margin: 0;
+    padding: 0;
+    font-size: 1.5em;
+    font-weight: bolder;
+}
+
+#mainCont label{
+    margin: 0;
+    padding: 0;
+    font-weight: bolder;
+    font-size: larger;
+}
+
+#mainCont select{
+    margin: 0;
+    padding: 0;
+    border-radius: 1em;
+}
+
+#buttons{
+    padding-top: 1.5em;
+}
+
+.custom-width{
+    width: 32%;
+}
+*/
+
+
+/* General Resets */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #f8f9fa;
+    font-family: 'Arial', sans-serif;
+}
+
+#container {
+    margin: 4em auto; /* Top margin and center alignment */
+    width: 40em; /* Increased width */
+    height: auto; /* Adjust height based on content */
+    background-color: #e0f7fa; /* Light blue background */
+    border-radius: 1em;
+    border: 2px solid orangered;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow effect */
+    padding: 1.5em;
+}
+
+#pingPongImg {
+    width: 100%; /* Responsive width */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 0.5em; 
+}
+
+#textBelowImg {
+    margin: 1em 0;
+    padding: 0.5em;
+    font-size: 1.5em;
+    font-weight: bold;
+    text-align: center;
+    color: #00796b; /* Color to complement the background */
+}
+
+#textBackground {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1em;
+    padding: 0.5em;
+    background-color: hsl(175, 41%, 79%); /* Lighter background */
+    border: 2px solid #00796b;
+    border-radius: 0.5em;
+}
+
+p {
+    margin-top: 1em;
+    text-align: center;
+    font-size: 1.1em;
+    color: #333;
+}
+
+#mainCont {
+    margin-top: 1em;
+    padding: 1em;
+    background-color: #ffffff; /* White background for main content */
+    border-radius: 0.5em;
+    border: 2px solid #00796b; /* Blue border matching the container */
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    height: auto; /* Adjust height based on content */
+}
+
+span {
+    margin: 0;
+    padding: 0;
+    font-size: 2em; /* Larger font size */
+    font-weight: bolder;
+    color: #004d40; /* Complementary color */
+}
+
+#mainCont label {
+    display: block;
+    margin-bottom: 0.5em;
+    font-weight: bold;
+    font-size: 1.2em;
+    color: #00796b;
+}
+
+#mainCont select {
+    margin: 0;
+    padding: 0.5em;
+    border-radius: 0.5em;
+    border: 1px solid #00796b;
+}
+
+#buttons {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 1.5em;
+}
+
+.custom-width {
+    width: 30%; /* Adjusted width for better spacing */
+}

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ScoreKeeper</title>
+    <link rel="stylesheet" href="C:\Users\ADMIN\OneDrive - Gritbyte Labs\Desktop\WebDevelopment\Excersies\DOM - ScoreKeeper\chatgptCode\app.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div id="container" class="container my-5 p-4 bg-light shadow rounded">
+        <figure id="imageAndText" class="text-center mb-4">
+            <img id="pingPongImg" src="https://static.wixstatic.com/media/d9a908_9788d245789c4c4b92b72651bf14f704~mv2.jpg/v1/fill/w_740,h_493,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/d9a908_9788d245789c4c4b92b72651bf14f704~mv2.jpg" alt="Ping Pong" class="img-fluid rounded">
+            <div id="textBackground" class="mt-3 p-2 bg-light border rounded">
+                <p id="textBelowImg" class="mb-0">Ping Pong Score Keeper</p>
+            </div>
+        </figure>
+        <main id="mainCont" class="text-center">
+            <div class="fs-2 fw-bold">
+                <span id="span1">0</span> to <span id="span2">0</span>
+            </div>
+            <p class="mt-3 mb-4">Use Buttons Below to Keep the Score</p>
+            <div class="mb-4">
+                <label for="numberOfGames" class="form-label">Playing to</label>
+                <select name="numberOfGames" id="numberOfGames" class="form-select w-auto">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                </select>
+            </div>
+            <div id="buttons" class="d-flex justify-content-between">
+                <button type="button" class="btn btn-success playerOneBtn">+1 Player One</button>
+                <button type="button" class="btn btn-primary playerTwoBtn">+1 Player Two</button>
+                <button type="button" class="btn btn-danger resetBtn">Reset</button>
+            </div>
+        </main>
+    </div>
+    <script src="C:\Users\ADMIN\OneDrive - Gritbyte Labs\Desktop\WebDevelopment\Excersies\DOM - ScoreKeeper\chatgptCode\app.js"></script>
+</body>
+</html>

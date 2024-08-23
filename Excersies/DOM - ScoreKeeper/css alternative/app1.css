@@ -1,0 +1,99 @@
+#container, #imageAndText, #textBackground, #textBelowImg, #mainCont {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-color: #f8f9fa;
+    
+}
+
+#container{
+    margin: 4em auto; /* Top margin and center alignment */
+    width: 30em;
+    height: auto;
+    background-color: hsl(175, 41%, 79%);
+    padding: 1.5em;
+    border-radius: 1em;
+    border: 2px solid orangered;
+}
+
+#pingPongImg{
+    height: auto;
+    width: 100%;
+    border-radius: 1em;
+    border: 0.2em solid olive; 
+}
+
+#textBelowImg{
+    display: flex;
+    margin-top: 0.5em;
+    margin-bottom:0.5em;
+    padding: 0.5em;
+    font: 1.5em sans-serif;
+    
+    justify-content: center; 
+    align-items: center;              
+    text-align: center;  
+    color: olive;
+}
+
+#textBackground{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin: 0.25em 0 0.2em 0;
+    padding: 0;
+    background-color: #fffff0;
+    border-bottom-color: black;
+    border-radius: 1em;
+  border: 0.2em solid olive; 
+}
+
+p{
+    margin: 0;
+    padding: 0;
+}
+
+#mainCont{
+    margin: 0;
+    padding: 0;
+    padding-left: 1.5em;
+    background-color: antiquewhite;
+    padding-top: 1em;
+    height:auto;
+    width: 100%;
+    border-radius: 1em;
+    border: 0.2em solid olive; 
+}
+
+span{
+    margin: 0;
+    padding: 0;
+    font-size: 1.5em;
+    font-weight: bolder;
+}
+
+#mainCont label{
+    margin: 0;
+    padding: 0;
+    font-weight: bolder;
+    font-size: larger;
+}
+
+#mainCont select{
+    margin: 0;
+    padding: 0;
+    border-radius: 1em;
+}
+
+#buttons{
+    padding-top: 1em;
+    padding-bottom: 0.5em;
+}
+
+.custom-width{
+    width: 31.5%;
+}
+

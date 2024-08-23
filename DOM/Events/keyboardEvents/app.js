@@ -10,22 +10,22 @@ let inp = document.querySelector('input')
 // })
 
 
-inp.addEventListener('keydown',function(evt){
-    switch(evt.code){
-        case 'ArrowUp':
-            console.log("UP!")
-            break
-        case 'ArrowDown':
-            console.log("DOWN!")
-            break
-        case 'ArrowRight':
-            console.log("Right!")
-            break
-        case 'ArrowLeft':
-            console.log("LEFT!")
-            break                
-    }
-})
+// inp.addEventListener('keydown',function(evt){
+//     switch(evt.code){
+//         case 'ArrowUp':
+//             console.log("UP!")
+//             break
+//         case 'ArrowDown':
+//             console.log("DOWN!")
+//             break
+//         case 'ArrowRight':
+//             console.log("Right!")
+//             break
+//         case 'ArrowLeft':
+//             console.log("LEFT!")
+//             break                
+//     }
+// })
 
 
 
@@ -48,12 +48,23 @@ nameSubmit.addEventListener('submit',function(evt){
     // appened in list
     list.append(newLI)
     //clear the input
-    input.value = ''
-    
+    input.value = ''    
+})
+
+// deleting wrong entries
+list.addEventListener('click',function(evt){
+    // evt.target.remove()
+    // console.dir(evt.target)
+    // we can add if conditon to only remove li if it is li, sometimes user may click on padding also
+    if(evt.target.nodeName==='LI'){
+        evt.target.remove()
+    }
 })
 
 
-/// change event
+
+
+//// change event ///////
 
 // const searchinput = document.querySelector('#search')
 
@@ -62,10 +73,11 @@ nameSubmit.addEventListener('submit',function(evt){
 // })
 
 
-//input event
-const searchinput = document.querySelector('#search')
-const h3 = document.querySelector('h3')
-searchinput.addEventListener("input",function (evt){
-    h3.innerText = searchinput.value
-})
+
+///// input event ////////////
+// const searchinput = document.querySelector('#search')
+// const h3 = document.querySelector('h3')
+// searchinput.addEventListener("input",function (evt){
+//     h3.innerText = searchinput.value
+// })
 
