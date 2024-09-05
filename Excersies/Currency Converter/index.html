@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="C:\Users\ADMIN\OneDrive - Gritbyte Labs\Desktop\WebDevelopment\Excersies\Currency Converter\app.css">
+</head>
+<body>
+    <div id="container">
+        <h1>Currency Converter</h1>
+        <form action="" id="form">
+            <div class="amount">
+                <label for="Amt">Enter Amount</label>
+                <input type="number" id="Amt" placeholder="Enter Amount">
+                <span id="amountError" style="color: red; display: none;">Please enter an amount.</span>
+                <!-- Add this toast notification element to your HTML -->
+                <div id="toast" style="display: none; position: fixed; bottom: 10px; left: 50%; transform: translateX(-50%); background: #333; color: #fff; padding: 10px; border-radius: 5px;"></div>
+
+                <div id="dropdownContainer">
+                    <div id="selectContainer">
+                        <p>From</p>
+                        <div id="fromContainer">
+                            <img id="fromFlag" src="https://flagsapi.com/US/flat/64.png"/>
+                            <select name="from" id="from">
+                          
+                            </select>
+                        </div>
+                    </div>
+                        
+                    <i id="exchangeImg" class="fa-solid fa-right-left"></i>
+                    
+                    <div id="outPutContainer">
+                        <p>To</p>
+                        <div id="toContainer">
+                            <img id="toFlag" src="https://flagsapi.com/IN/flat/64.png"/>
+                            <select name="to" id="to">
+                                
+                            </select>
+                        </div>
+
+                    </div>
+                </div>
+                    <div class="output">
+                        <button id="submit" type="submit">Get Exchange Rates </button>
+                        <div>
+                            <label for="outputAmt">Converted Amount</label>
+                        <input type="text" id="outputAmt">
+                        </div>
+                        
+                    </div>
+                
+                
+                
+            </div>
+ 
+        </form>
+    </div>
+    <script src="C:\Users\ADMIN\OneDrive - Gritbyte Labs\Desktop\WebDevelopment\Excersies\Currency Converter\code.js"></script>
+    <script src="C:\Users\ADMIN\OneDrive - Gritbyte Labs\Desktop\WebDevelopment\Excersies\Currency Converter\app.js"></script>
+</body>
+</html>

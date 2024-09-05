@@ -1,0 +1,74 @@
+body{
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+#container{
+    max-width: 400px;
+    width: 100%; /* Responsive width */
+    height: auto; /* Fixed height or adjust as needed */
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    justify-items: center;
+    overflow: hidden;
+    border-radius: 10px;
+    border: 3px solid coral ;
+}
+
+#displayScreen{
+    width: 380px;
+    height: 55px;
+    border: none;
+    padding: 10px;
+    font: 3rem sans-serif;
+    text-align: left;
+    background-color:hsl(0, 0%, 20%) ;
+    color: white;
+
+}
+
+#keys{
+    display: grid;
+    width: 360px;
+    grid-template-columns: repeat(4,1fr);
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background-color:hsl(0, 0%, 15%)
+}
+
+button{
+    width: 70px;
+    height: 70px;
+    border-radius:35px ;
+    border: none;
+    background-color: hsl(0, 0%, 30%);
+    color: white;
+    font: 2rem sans-serif;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+button:hover{
+    background-color: hsl(0, 0%, 50%);
+}
+button:active{
+    background-color: hsl(0, 0%, 70%);
+}
+
+.red{
+    background-color: coral;
+}
+.red:hover{
+    background-color: hsl(16, 100%, 76%);
+}
+.red:active{
+    background-color: hsl(16, 100%, 85%);
+}

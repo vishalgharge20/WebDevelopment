@@ -1,0 +1,110 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 900px;
+    background-color:#f4e4ba;
+}
+
+h1{
+    text-align: center;
+}
+
+#container{
+    background-color:gainsboro;
+    padding: 10px;
+    border:5px solid olive;
+    border-radius: 20px;
+    min-height: auto;
+    width: auto;
+}
+
+#form{
+    margin: 10px;
+    padding: 20px;
+    border: 3px solid coral;
+    border-radius: 15px;
+    font: 1em sans-serif;
+}
+
+form select,input,button{
+    width: 100%;
+    border-color: #f4e4ba;
+    outline-color: coral;
+}
+
+p{
+ margin-top: 15px;   
+}
+
+#exchangeImg{
+    margin: 0 15px;
+    height: 20px;    /* Match the height of the dropdowns */
+}
+
+#submit{
+    margin-top: 25px;
+    margin-Bottom: 25px;
+    height: 25px;
+    
+}
+
+input{
+    margin-top: 10px;
+    border-radius: 7.50px;
+    /* height: 20px; */
+    height: 25px; /* Adjust height for consistency */
+}
+
+#submit:hover{
+    background-color: coral;
+    
+}
+
+#dropdownContainer{
+    display: flex;
+    align-items: center;
+    justify-content:space-between;
+    gap: 20px; /* Space between containers */
+}
+
+#selectContainer, #outPutContainer {
+    display:flex;
+    flex-direction: column; 
+    align-items: center;
+    gap: 5px;
+}
+
+#dropdownContainer img{
+    width: 50px;
+    
+}
+
+#selectContainer select, #outPutContainer select {
+    height: 25px;
+    
+}
+
+#selectContainer img, #outPutContainer img {
+    width: 50px;
+    display: block; /* Ensure images are treated as block elements */
+}
+
+#fromContainer, #toContainer{
+    display: flex;
+    align-items: center; /* Center items vertically */
+    gap: 10px; /* Space between the image and the dropdown */
+    border: solid 2px olive;
+    border-radius: 14px;
+    padding-right: 2px ;
+}
+
+#submit{
+    height: 35px;
+}
+
