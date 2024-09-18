@@ -1,0 +1,55 @@
+.body{
+    display: flex;
+    margin: 0;
+    padding: 0;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    
+}
+
+#gameBox{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 750px;
+}
+
+#inputContainer{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+}
+
+.cell{
+    display: flex;
+    width: 200px;
+    height: 200px;
+    font-size: 120px;
+    border: 10px solid grey;
+    border-bottom: 5px solid grey;
+    border-top: 5px solid grey;
+    border-right: 5px solid grey;
+    border-left: 5px solid grey;
+    outline: none;
+    text-align: center;
+    box-sizing: border-box;
+    cursor: pointer;
+    vertical-align: middle;
+    user-select: none; 
+    justify-content: center;
+    align-items: center;
+}  
+
+#one,#two,#three{
+    border-top: 10px solid grey;
+}
+#seven,#eight,#nine{
+    border-bottom: 10px solid grey;
+}
+#one,#four,#seven{
+    border-left: 10px solid grey;
+}
+#three,#six,#nine{
+    border-right: 10px solid grey;
+}

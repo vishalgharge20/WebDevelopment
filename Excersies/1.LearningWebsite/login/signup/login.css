@@ -1,0 +1,112 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f4f4f4;
+}
+
+#mainBox{
+    width: 50%;
+    max-width: 540px;
+    height: auto;
+    /* padding-top: 20px;
+    padding-bottom: 20px; */
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    display: flex;
+    justify-content:flex-start;
+    border: 4px solid grey;
+    border-radius: 8px;
+}
+
+
+#login{
+    width: 50%;
+    height: 250px;
+    padding: 15px 0 15px  15px;
+    background-color: oldlace;
+}
+
+/* Input fields */
+#userInput input {
+    width: 95%;
+    padding: 5px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+/* Sign in button */
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+/* Button hover effect */
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Forgot password link */
+#forgotPassword {
+    text-align: center;
+    margin-bottom: 15px;
+    font-size: 14px;
+    color: #007bff;
+    cursor: pointer;
+}
+
+#forgotPassword:hover {
+    text-decoration: underline;
+}
+
+#login h1 {
+    text-align: left; /* Center the text horizontally */
+    margin-bottom: 20px; /* Add spacing between the heading and next content */
+}
+
+
+button{
+    width: 50%;
+    justify-self: center;
+}
+
+.center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#rightSideContent{
+    width: 50%;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    border-radius:3px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: orange;
+}
+
+#signUp{
+    padding: 15px;
+}
+
+
+
