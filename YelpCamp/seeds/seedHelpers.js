@@ -1,3 +1,4 @@
+
 module.exports.descriptors = [
     'Forest',
     'Ancient',
@@ -42,3 +43,4 @@ module.exports.places = [
     'Cliffs',
     'Hollow'
 ]
+
