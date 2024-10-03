@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose')
 const app = express();
+const ejsMate = require('ejs-mate')
 // const path = require('path')
 const Campground = require('./models/campground') 
 
@@ -8,6 +9,7 @@ const Campground = require('./models/campground')
 const methodOverride = require('method-override');
 // Middleware to support PUT and DELETE methods
 app.use(methodOverride('_method'));
+
 
 //---> connect mangoose
 mongoose.connect('mongodb://127.0.0.1:27017/yelp-camp')
@@ -18,6 +20,8 @@ mongoose.connect('mongodb://127.0.0.1:27017/yelp-camp')
     console.log("Mongo - Oh No! Error!!!", err);
   });
 
+// ejs-mate
+app.engine('ejs',ejsMate)
 
 app.set('view engine','ejs')
 //-->> set this if the views folder is not located in the root of the project <<--//
@@ -59,7 +63,8 @@ app.get('/campgrounds/new',(req,res)=>{
 
 /// create new campground using page
 app.post('/campgrounds/new',async(req,res)=>{
-  const { title, price, location, description } = req.body;
+  const { title, price, location, description,image } = req.body;
+  console.log(req.body)
   try{
     const newCampground = new Campground(req.body)
     await newCampground.save()

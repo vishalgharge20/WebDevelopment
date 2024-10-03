@@ -1,31 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CampGrounds</title>
-</head>
-<body>
-    <h1>CampGround Details</h1>
-    <br>
-    <h2><%= foundCampground.title %></h2>
-    <hr>
-    <div>
-        Title: <%= foundCampground.title %> <br> <br>
-        Location: <%= foundCampground.location %> <br> <br>
-        Price: <%= foundCampground.price %> <br> <br>
-        Description: <%= foundCampground.description %>
-        <hr> 
-        <a href="/campgrounds/<%= foundCampground.id %>/edit"><button>Edit</button></a>
-        <br> <br>
-        <form action="/campgrounds/<%= foundCampground.id %>?_method=DELETE" method="POST">
-            <button>Delete</button>
-        </form>
-        <br> 
-        <a href="/campgrounds/"><button>Home</button></a>
+<% layout('/layouts/boilerplate')%>
 
+<div class="row justify-content-center">
+    <div class="col-md-6"> <!-- Adjusts width of the card to be responsive -->
+        <div class="card mb-3" style="width: 100%; height: auto;"> <!-- 100% width and auto height for responsiveness -->
+            <img src="<%= foundCampground.image %>" class="card-img-top" alt="camp" style="height: 300px; object-fit: cover;"> <!-- Fixed height and cover for image -->
+            <div class="card-body">
+                <h5 class="card-title"><h2><%= foundCampground.title %></h2></h5>
+                <p class="card-text"><%= foundCampground.description %></p>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item"><b>Title:</b> <%= foundCampground.title %></li>
+                <li class="list-group-item"><b>Location:</b> <%= foundCampground.location %></li>
+                <li class="list-group-item"><b>Price:</b> $ <%= foundCampground.price %></li>
+            </ul>
+            <div class="d-flex justify-content-evenly mt-3 mb-3"> <!-- Flexbox classes for spacing -->
+                <a href="/campgrounds/<%= foundCampground.id %>/edit" class="btn btn-primary">Edit</a>
+                <form action="/campgrounds/<%= foundCampground.id %>?_method=DELETE" method="POST">
+                    <button class="btn btn-danger">Delete</button>
+                </form>
+                <a href="/campgrounds/" class="btn btn-secondary">Home</a>
+            </div>
+        </div>
     </div>
-
-  
-</body>
-</html>
+</div>
