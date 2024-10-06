@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Products</title>
+</head>
+<body>
+    <h1>All Products:  <a href="/products"><button type="submit"><b>All Products</b></button></a></h1>
+    <form action="">
+        <input type="search" name="categories" id="q">
+        <button type="submit">Search</button>
+    </form>
+    <br>
+    <hr>
+    <h3>Create a New Product
+        <br><br>
+        <a href="/products/new">
+            <button>New Product</button>
+        </a>
+    </h3>
+    <hr>
+
+    
+    <ul>
+      <% for (let p of allProducts) { %>
+        <li>
+            <b>Product Name:</b> <%= p.name %>
+            <br>
+            <br>
+            <a href="/products/<%=p.id%>"><button>View Product</button></a>
+            <hr>
+            <br>
+            <!-- <b>Price:</b> <%= p.price %>
+            <br>
+            <b>Category:</b> <%= p.categories %>
+            <br>
+            <b>Category:</b> <%= p.id %>
+            <br>
+            <hr> -->
+        </li>
+      <% } %>
+    </ul>
+</html>

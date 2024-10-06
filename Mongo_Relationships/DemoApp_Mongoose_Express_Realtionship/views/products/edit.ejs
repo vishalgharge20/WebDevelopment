@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Product</title>
+</head>
+<body>
+    <h2>Edit product</h2>
+    <hr>
+    <br>
+    <form action="/products/<%= foundProduct._id %>/edit?_method=PUT" method="post">
+        <label for="name"><b>Product Name</b></label>
+        <input type="text" id="name" name="name" value="<%=foundProduct.name%>">
+        <br>
+        <br>
+        <label for="price"><b>Product Price</b></label>            
+        <input type="number" id="price" name="price" step="0.01" value="<%=foundProduct.price%>">
+        <br>
+        <br>
+        <label for="categories"><b>Select Category</b></label>
+        <select name="categories" id="categories">
+            <% categories.forEach(c => { %>
+                <option value="<%= c %>" <%= foundProduct.categories === c ? 'selected' : '' %>><%= c %></option>
+            <% }); %>
+        </select>
+
+        <!-- or use this code below --- script -->
+        <!-- Use a script to set the selected value after the page loads -->
+        <!-- <script>
+            document.getElementById('categories').value = "<%= foundProduct.categories %>";
+        </script> -->
+        
+        <br>
+        <br>
+        <button type="submit">Update</button>
+    </form>
+</body>
+</html>

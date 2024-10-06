@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farm Details</title>
+</head>
+<body>
+    <h1>Farm Details</h1>
+    <br>
+    <h2><%= findfarm.name %></h2>
+    <b>Farm Name: </b> <%= findfarm.name %>
+    <br>
+    <hr>
+    <b>Farm id: </b> <%= findfarm.id %>
+    <br>
+    <hr>
+    <b>City: </b> <%= findfarm.city %>
+    <br>
+    <hr>
+    <b>Products:</b> 
+    <ul>
+        <% for (const product of findfarm.products) { %>
+            <li>
+                <strong>Name:</strong> <%= product.name %><br>
+                <a href="/products/<%=product._id%>">View Product</a>
+                <hr>
+            </li>
+        <% } %>
+    </ul>
+    <br>
+    <br>
+    <a href="/farms/<%= findfarm.id %>/products/new">Add Products</a>
+    <hr>
+    <form action="/farms/<%=findfarm.id%>?_method=DELETE" method="post">
+        <button type="submit">Delete</button>
+    </form>   
+    <br>       
+    <a href="/farms"><button>Back</button></a>
+    
+</html>

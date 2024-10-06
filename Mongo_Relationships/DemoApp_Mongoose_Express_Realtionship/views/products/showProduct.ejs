@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details</title>
+</head>
+<body>
+    <h1>Product Details</h1>
+    <br>
+    <h2><%= foundProduct.name %></h2>
+    <b>Product Name: </b> <%= foundProduct.name %>
+    <br>
+    <hr>
+    <b>Product id: </b> <%= foundProduct.id %>
+    <br>
+    <hr>
+    <b>Product Price: </b> <%= foundProduct.price %>
+    <br>
+    <hr>
+    <b>Product Category: </b> <%= foundProduct.categories %>
+    <hr>
+    <b>Farm: </b> <a href="/farms/<%= foundProduct.farm.id %>">
+        <%= foundProduct.farm.name %> 
+    </a>
+    <hr>
+    <br> 
+    <a href="/products/<%=foundProduct.id%>/edit"><button>Edit</button></a>  
+    <br>        <br>
+    <form action="/products/<%=foundProduct.id%>?_method=DELETE" method="post">
+        <button type="submit">Delete</button>
+    </form>   
+    <br>       
+    <button onclick="window.history.back()">Back</button>
+    
+</html>

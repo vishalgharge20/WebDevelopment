@@ -1,5 +1,4 @@
-<% layout('/layouts/boilerplate')%>
-
+<% layout('/layouts/boilerplate') %>
 <div class="row justify-content-center">
     <div class="col-md-6"> <!-- Adjusts width of the card to be responsive -->
         <div class="card mb-3" style="width: 100%; height: auto;"> <!-- 100% width and auto height for responsiveness -->
@@ -13,12 +12,58 @@
                 <li class="list-group-item"><b>Location:</b> <%= foundCampground.location %></li>
                 <li class="list-group-item"><b>Price:</b> $ <%= foundCampground.price %></li>
             </ul>
-            <div class="d-flex justify-content-evenly mt-3 mb-3"> <!-- Flexbox classes for spacing -->
+            <!-- Reviews Section -->
+            <div class="card-body">
+                <b class="card-title">Reviews:</b>
+                <br><br>
+                <% if (foundCampground.reviews.length === 0) { %>
+                    <p>No reviews yet.</p>
+                <% } else { %>
+                    <ul class="list-group">
+                        <% for (let review of foundCampground.reviews) { %>
+                            <li class="list-group-item">
+                                <strong>Review:</strong> <%= review.body %>
+                                <br>
+                                <strong>Rating:</strong> <%= review.rating %> ⭐
+                                <br><br>
+                                <p>Review ID: <%= review._id %></p> <!-- Debug line -->
+                                <form action="/campgrounds/<%= foundCampground.id %>/review/<%= review._id %>?_method=DELETE" method="POST">
+                                    <button class="btn btn-warning" type="submit">Delete Review</button>
+                                </form>
+                            </li>
+                        <% } %>
+                    </ul>
+                <% } %>
+            </div>
+            <!-- Button Section -->
+            <div class="card-body d-flex justify-content-evenly mt-3"> <!-- Flexbox for spacing -->
                 <a href="/campgrounds/<%= foundCampground.id %>/edit" class="btn btn-primary">Edit</a>
                 <form action="/campgrounds/<%= foundCampground.id %>?_method=DELETE" method="POST">
                     <button class="btn btn-danger">Delete</button>
                 </form>
-                <a href="/campgrounds/" class="btn btn-secondary">Home</a>
+                <!-- Review Button with Modal -->
+                <div>
+                    <a href="#" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#reviewModal">Review</a>
+                    <!-- Review Modal -->
+                    <div class="modal fade" id="reviewModal" tabindex="-1" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Leave a Review</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form action="/campgrounds/<%= foundCampground.id %>/review" method="POST" class="needs-validation" novalidate>
+                                        <input type="range" class="form-range mb-3" name="rating" min="1" max="5">
+                                        <textarea class="form-control mb-3" name="body" rows="3" placeholder="Write review..." required></textarea>
+                                        <button type="submit" class="btn btn-success w-100">Submit</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <a href="/campgrounds" class="btn btn-secondary">Home</a>
             </div>
         </div>
     </div>

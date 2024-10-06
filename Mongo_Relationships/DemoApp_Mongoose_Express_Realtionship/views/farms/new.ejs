@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create New Farm</Details></title>
+</head>
+<body>
+    <h2>Add a Farm</h2>
+    <hr>
+    <br>
+    <form action="/farms/post" method="post">
+        <div>
+            <label for="name"><b>Farm Name</b></label>
+        <input type="text" id="name" name="name" placeholder="Farm Name">
+        </div>
+        <br>
+        <div>
+            <label for="city"><b>City</b></label>            
+            <input type="text" id="city" name="city" placeholder="city">
+        </div>
+        <br>
+        <div>
+            <label for="email"><b>email</b></label>
+            <input type="text" id="email" name="email" placeholder="email">
+        </div>
+        <br>
+        <div>
+            <h3>Products</h3>
+        <ul>
+            <%# for (let product of products) { %>
+                <li><%# product.name %></li>
+            <%# } %>
+        </div>
+        <button type="submit">Create</button>
+        <br><br>
+        <a href="/farms">
+            <button type="submit">Back</button>
+        </a>
+    </form>
+</body>
+</html>

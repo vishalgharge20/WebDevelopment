@@ -3,26 +3,56 @@
 <div class="row justify-content-center">
     <h1 class="text-center mb-4">Update Campground</h1>
     <div class="col-md-4"> <!-- Bootstrap will manage width -->
-        <form action="/campgrounds/<%=foundCampground.id%>?_method=PUT" method="post" class="border p-4"> <!-- Added border and padding -->
+        <form action="/campgrounds/<%=foundCampground.id%>?_method=PUT" method="post" class="border p-4 needs-validation" novalidate> <!-- Added border and padding -->
             <div class="mb-3"> <!-- Margin bottom for spacing -->
                 <label for="title" class="form-label">Enter Title:</label>
-                <input type="text" class="form-control" name="title" id="title" placeholder="Title" value="<%=foundCampground.title%>"> 
+                <input type="text" class="form-control" name="title" id="title" placeholder="Title" value="<%=foundCampground.title%>" required> 
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+                <div class="invalid-feedback">
+                    Please Enter a Title
+                </div>
             </div>
             <div class="mb-3"> <!-- Margin bottom for spacing -->
                 <label for="location" class="form-label">Enter Location:</label>
-                <input type="text" class="form-control" name="location" id="location" placeholder="Location" value="<%=foundCampground.location%>">
+                <input type="text" class="form-control" name="location" id="location" placeholder="Location" value="<%=foundCampground.location%>" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+                <div class="invalid-feedback">
+                    Please Enter a Location
+                </div>
             </div>
             <div class="mb-3"> <!-- Margin bottom for spacing -->
                 <label for="price" class="form-label">Enter Price:</label> 
-                <input type="text" class="form-control" name="price" id="price" placeholder="Price" value="<%=foundCampground.price%>"> 
+                <input type="number" class="form-control" name="price" id="price" placeholder="Price" value="<%=foundCampground.price%>" required> 
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+                <div class="invalid-feedback">
+                    Please Enter a Valid Price
+                </div>
             </div>
             <div class="mb-3"> <!-- Margin bottom for spacing -->
                 <label for="image" class="form-label">Image URL:</label>
-                <input type="text" class="form-control" name="image" id="image" placeholder="Image URL" value="<%=foundCampground.image%>"> 
+                <input type="text" class="form-control" name="image" id="image" placeholder="Image URL" value="<%=foundCampground.image%>" required> 
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+                <div class="invalid-feedback">
+                    Please Enter a image url
+                </div>
             </div>
             <div class="mb-3"> <!-- Margin bottom for spacing -->
                 <label for="description" class="form-label">Enter Description:</label>
-                <input type="text" class="form-control" name="description" id="description" placeholder="Description" value="<%=foundCampground.description%>">
+                <input type="text" class="form-control" name="description" id="description" placeholder="Description" value="<%=foundCampground.description%>" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+                <div class="invalid-feedback">
+                    Please Enter a Description
+                </div>
             </div>
             <div class="d-flex justify-content-between"> <!-- Flexbox for button alignment -->
                 <button type="submit" class="btn btn-primary">Submit</button> <!-- Styled button -->

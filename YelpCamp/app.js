@@ -4,6 +4,12 @@ const app = express();
 const ejsMate = require('ejs-mate')
 // const path = require('path')
 const Campground = require('./models/campground') 
+const catchAsync = require('./utils/catchAsync')
+const ExpressError = require('./utils/ExpressError')
+const joi = require('joi')
+const {campgroundschema,reviewSchema} = require('./schemas')
+const Review = require('./models/reviews')
+
 
 // override
 const methodOverride = require('method-override');
@@ -33,9 +39,34 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 
-app.listen(3000,()=>{
-    console.log('Serving on port 3000')
-})
+//// middleware to validate JOI
+// //// using joi
+const validateCampground = (req,res,next)=>{
+  const {error} = campgroundschema.validate(req.body)
+  if(error){
+    const msg = error.details.map(el => el.message).join(',')
+    throw new ExpressError(msg,400 )
+  }
+  else{
+    next()
+  }  
+}
+
+
+const validateReview = (req,res,next)=>{
+  const {error} = reviewSchema.validate(req.body)
+  if(error){
+    const msg = error.details.map(el => el.message).join(',')
+    throw new ExpressError(msg,400 )
+  }
+  else{
+    next()
+  }  
+}
+
+
+
+
 
 app.get('/',(req,res)=>{
     res.render('home')
@@ -43,113 +74,133 @@ app.get('/',(req,res)=>{
 
 
 //--> get all campgrounds
-app.get('/campgrounds',async(req,res)=>{
-  try{
+app.get('/campgrounds',catchAsync(async(req,res)=>{
     const campgrounds = await Campground.find({})
     res.render('campgrounds/index',{campgrounds})
-  }
-  catch(error){
-      console.error('Error fetching campgrounds:', error);
-      res.status(500).send('Internal Server Error');
-    }
-})
+}))
 
 
 ///-------> order matters <-----------///
 // get new campground page
-app.get('/campgrounds/new',(req,res)=>{
+app.get('/campgrounds/new',catchAsync(async(req,res)=>{
   res.render('campgrounds/newPage')
-})
+}))
 
 /// create new campground using page
-app.post('/campgrounds/new',async(req,res)=>{
-  const { title, price, location, description,image } = req.body;
-  console.log(req.body)
-  try{
+app.post('/campgrounds/new', validateCampground, catchAsync(async(req,res)=>{
+  //// server side validation using if
+  // const { title, price, location, description, image } = req.body;
+  //   // Check if any required field is missing
+  //   if (!title || !price || isNaN(price) || !location || !description || !image) {
+  //       throw new ExpressError('All fields must be filled out.', 400);
+  //   }
+
     const newCampground = new Campground(req.body)
     await newCampground.save()
-    res.redirect('/campgrounds')
-  }
-  catch(error){
-    console.error("ERROR!!",error)
-  }
-})
-
+    res.redirect(`/campgrounds/${newCampground.id}`)
+}))
 
 
 
 //--> get campground by id
-app.get('/campgrounds/:id',async(req,res)=>{
+app.get('/campgrounds/:id',catchAsync(async(req,res)=>{
   const {id} = req.params;
   // if (!mongoose.isValidObjectId(id)) {
   //   return res.status(400).send('Invalid ID format'); // Return 400 Bad Request
   // }
-  try{
-    const foundCampground = await Campground.findById(id)
-    // if (!foundCampground) {
-    //   return res.status(404).send('Campground not found'); // Handle not found case
-    // }
+    const foundCampground = await Campground.findById(id).populate('reviews')
+    if(!foundCampground){
+      throw new ExpressError('Product Not Found', 404)
+  }
     res.render('campgrounds/show',{foundCampground})
-  }
-  catch(error){
-    console.error("Error occurred while fetching campgrounds:",error)
-    res.status(500).send('Internal Server Error'); // Inform the client about the error
-  }
-})
+}))
 
 
 
 
 ///// go to the update page
-app.get('/campgrounds/:id/edit',async(req,res)=>{
+app.get('/campgrounds/:id/edit',catchAsync(async(req,res)=>{
   const {id} = req.params;
-  try{
     const foundCampground = await Campground.findById(id)
+    if(!foundCampground){
+      throw new ExpressError('Product Not Found', 404)
+  }
     res.render('campgrounds/edit',{foundCampground})
-  }
-  catch(error){
-    console.error("Error occurred while fetching campgrounds:",error)
-  }
-})
+}))
 
 
 /// update in update page
-app.put('/campgrounds/:id',async(req,res)=>{
+app.put('/campgrounds/:id',validateCampground,catchAsync(async(req,res)=>{
   const {id} = req.params;
-  try{
     const updateCampground = await Campground.findByIdAndUpdate(id,req.body,{runValidators:true,new:true})
+    if(!updateCampground){
+      throw new ExpressError('Product Not Found', 404)
+  }
     res.redirect('/campgrounds')
-  }
-  catch(err){
-    console.log(err)
-  }
-})
+}))
 
 
 
 ///  delete campground
-app.delete('/campgrounds/:id', async (req, res) => {
+app.delete('/campgrounds/:id', catchAsync(async (req, res) => {
   const {id} = req.params;
-  try{
     const deleteCampground = await Campground.findByIdAndDelete(id)
+    if(deleteCampground.deletedCount===0){
+      throw new AppError('Product Not Found', 404)
+  }
     res.redirect('/campgrounds')
+}))
+
+
+//// review routes
+// review campground
+app.get('/campgrounds/:id/review/new',catchAsync(async(req,res)=>{
+  const {id} = req.params;
+    const foundCampground = await Campground.findById(id)
+    if(!foundCampground){
+      throw new ExpressError('Product Not Found', 404)
   }
-  catch(err){
-    console.log(err)
+    res.render('reviews/review',{foundCampground})
+}))
+
+app.post('/campgrounds/:id/review',validateReview, catchAsync(async(req,res)=>{
+  const {id} = req.params;
+  const foundCampground = await Campground.findById(id)
+  const newReview = new Review(req.body)
+  foundCampground.reviews.push(newReview)
+  await newReview.save()
+  await foundCampground.save()
+  res.redirect(`/campgrounds/${foundCampground.id}`)
+}))
+
+/// delete a review
+app.delete('/campgrounds/:id/review/:reviewid', catchAsync(async (req, res) => {
+  const {id,reviewid} = req.params;
+  const foundCampground = await Campground.findByIdAndUpdate(id)
+  if(!foundCampground){
+    throw new ExpressError('Product Not Found', 404)
   }
+  const delReview = await Review.findByIdAndDelete(reviewid)
+  console.log(delReview)
+  res.redirect(`/campgrounds/${foundCampground.id}`)
+}))
+
+ 
+app.all('*',(req,res,next)=>{
+  next(new ExpressError('Page Not Found', 404))
 })
 
 
+// Error handling middleware
+app.use((err, req, res, next) => {
+  const {statusCode = 500} = err
+  if(!err.message){
+    err.message = 'Oh No Something went Wrong'
+  }
+  res.status(statusCode).render('error',{err})
+});
 
-// //--> new camp
-// app.get('/makeCampGround',async(req,res)=>{
-//     const camp = new Campground({
-//         title:'Jk Grounds',
-//         price:'200',
-//         description:'A Small nice park to play Cricket,BasketBall and for Jogging/Walking',
-//         location:'Near by Railway Station'
-//     });
-//     await camp.save();
-//     res.send(camp)
-// })
 
+app.listen(3000,()=>{
+  console.log('Serving on port 3000')
+})

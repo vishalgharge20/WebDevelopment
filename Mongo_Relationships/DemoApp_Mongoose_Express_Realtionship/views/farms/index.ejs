@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Products</title>
+</head>
+<body>
+    <h1>All Farms:  <a href="/farms"><button type="submit"><b>All Farms</b></button></a></h1>
+    <hr>
+    <h3>Create a New Farm
+        <br><br>
+        <a href="/farms/new">
+            <button>New Farm</button>
+        </a>
+    </h3>
+    <hr>
+
+    
+    <ul>
+      <% for (let f of allFarms) { %>
+        <li>
+            <b>Farm Name:</b> <%= f.name %>
+            <br>
+            City : <%= f.city %>
+            <br>
+            <br>
+            <a href="/farms/<%=f.id%>"><button>View Farm</button></a>
+            <br>
+            <hr>
+        </li>
+      <% } %>
+    </ul>
+</html>
