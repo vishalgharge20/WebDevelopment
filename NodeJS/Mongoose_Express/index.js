@@ -3,6 +3,13 @@ const app = express()
 const path = require('path')
 const mongoose = require('mongoose') 
 const methodOverride = require('method-override');
+const session = require('express-session')
+const flash = require('connect-flash')
+
+/// flash setup
+app.use(session({secret:'mysecret',resave:false,saveUninitialized:false}))
+app.use(flash())
+
 
 // import the model --- Product
 const Product = require('./models/product')
@@ -21,6 +28,14 @@ app.use(express.urlencoded({extended:true}))
 
 // Use method-override middleware
 app.use(methodOverride('_method'));
+
+
+/// res.locals for flash
+app.use((req,res,next)=>{
+    res.locals.messages = req.flash('success')
+    next()
+})
+
 
 app.listen(3000,()=>{
     console.log("App is listening on port 3000!!")
@@ -79,6 +94,8 @@ app.post('/products/post', async (req, res) => {
         // Save the new product to the database
         await newProduct.save();
 
+        /// falsh a success message
+        req.flash('success','Successfully made a new farm')
         // Redirect to the product's show page with its _id
         res.redirect(`/products/${newProduct._id}`);
     } catch (error) {
@@ -92,7 +109,7 @@ app.post('/products/post', async (req, res) => {
 app.get('/products/:id',async (req,res)=>{
     const {id} = req.params
     const foundProduct = await Product.findById(id)
-    res.render('products/showProduct.ejs',{foundProduct})
+    res.render('products/showProduct.ejs',{foundProduct,})
 })
 
 

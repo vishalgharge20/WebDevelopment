@@ -100,14 +100,6 @@ app.post('/farms/:id/products',async(req,res)=>{
 
 
 
-
-
-
-
-
-
-
-
 //// routes for Products
 
 // //// base route

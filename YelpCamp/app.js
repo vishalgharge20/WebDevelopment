@@ -2,13 +2,18 @@ const express = require('express');
 const mongoose = require('mongoose')
 const app = express();
 const ejsMate = require('ejs-mate')
-// const path = require('path')
+const path = require('path')
 const Campground = require('./models/campground') 
 const catchAsync = require('./utils/catchAsync')
 const ExpressError = require('./utils/ExpressError')
 const joi = require('joi')
 const {campgroundschema,reviewSchema} = require('./schemas')
 const Review = require('./models/reviews')
+const session = require('express-session')
+const flash = require('connect-flash')
+
+const campgroundRoutes = require('./routes/campgrounds')
+const reviewRoutes = require('./routes/reviews')
 
 
 // override
@@ -16,6 +21,9 @@ const methodOverride = require('method-override');
 // Middleware to support PUT and DELETE methods
 app.use(methodOverride('_method'));
 
+// app.use(express.static('public'))
+// or
+app.use(express.static(path.join(__dirname,'public')))
 
 //---> connect mangoose
 mongoose.connect('mongodb://127.0.0.1:27017/yelp-camp')
@@ -25,6 +33,8 @@ mongoose.connect('mongodb://127.0.0.1:27017/yelp-camp')
   .catch((err) => {
     console.log("Mongo - Oh No! Error!!!", err);
   });
+
+  
 
 // ejs-mate
 app.engine('ejs',ejsMate)
@@ -39,153 +49,40 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 
-//// middleware to validate JOI
-// //// using joi
-const validateCampground = (req,res,next)=>{
-  const {error} = campgroundschema.validate(req.body)
-  if(error){
-    const msg = error.details.map(el => el.message).join(',')
-    throw new ExpressError(msg,400 )
+// session
+const sessionConfig ={
+  secret: 'thisisasecret',
+  resave: false,
+  saveUninitialized: true,
+  cookie: {
+    httpOnly: true,
+    expries: Date.now() + 1000*60*60*24*7,
+    maxAge: 1000*60*60*24*7
   }
-  else{
-    next()
-  }  
 }
+app.use(session(sessionConfig))
+
+//fash
+app.use(flash())
+
+/// middleware  for flash
+app.use((req,res,next)=>{
+  res.locals.success = req.flash('success')
+  res.locals.error = req.flash('error')
+  next()
+})
 
 
-const validateReview = (req,res,next)=>{
-  const {error} = reviewSchema.validate(req.body)
-  if(error){
-    const msg = error.details.map(el => el.message).join(',')
-    throw new ExpressError(msg,400 )
-  }
-  else{
-    next()
-  }  
-}
 
 
-
+app.use('/campgrounds',campgroundRoutes)
+app.use('/',reviewRoutes)
 
 
 app.get('/',(req,res)=>{
     res.render('home')
 })
 
-
-//--> get all campgrounds
-app.get('/campgrounds',catchAsync(async(req,res)=>{
-    const campgrounds = await Campground.find({})
-    res.render('campgrounds/index',{campgrounds})
-}))
-
-
-///-------> order matters <-----------///
-// get new campground page
-app.get('/campgrounds/new',catchAsync(async(req,res)=>{
-  res.render('campgrounds/newPage')
-}))
-
-/// create new campground using page
-app.post('/campgrounds/new', validateCampground, catchAsync(async(req,res)=>{
-  //// server side validation using if
-  // const { title, price, location, description, image } = req.body;
-  //   // Check if any required field is missing
-  //   if (!title || !price || isNaN(price) || !location || !description || !image) {
-  //       throw new ExpressError('All fields must be filled out.', 400);
-  //   }
-
-    const newCampground = new Campground(req.body)
-    await newCampground.save()
-    res.redirect(`/campgrounds/${newCampground.id}`)
-}))
-
-
-
-//--> get campground by id
-app.get('/campgrounds/:id',catchAsync(async(req,res)=>{
-  const {id} = req.params;
-  // if (!mongoose.isValidObjectId(id)) {
-  //   return res.status(400).send('Invalid ID format'); // Return 400 Bad Request
-  // }
-    const foundCampground = await Campground.findById(id).populate('reviews')
-    if(!foundCampground){
-      throw new ExpressError('Product Not Found', 404)
-  }
-    res.render('campgrounds/show',{foundCampground})
-}))
-
-
-
-
-///// go to the update page
-app.get('/campgrounds/:id/edit',catchAsync(async(req,res)=>{
-  const {id} = req.params;
-    const foundCampground = await Campground.findById(id)
-    if(!foundCampground){
-      throw new ExpressError('Product Not Found', 404)
-  }
-    res.render('campgrounds/edit',{foundCampground})
-}))
-
-
-/// update in update page
-app.put('/campgrounds/:id',validateCampground,catchAsync(async(req,res)=>{
-  const {id} = req.params;
-    const updateCampground = await Campground.findByIdAndUpdate(id,req.body,{runValidators:true,new:true})
-    if(!updateCampground){
-      throw new ExpressError('Product Not Found', 404)
-  }
-    res.redirect('/campgrounds')
-}))
-
-
-
-///  delete campground
-app.delete('/campgrounds/:id', catchAsync(async (req, res) => {
-  const {id} = req.params;
-    const deleteCampground = await Campground.findByIdAndDelete(id)
-    if(deleteCampground.deletedCount===0){
-      throw new AppError('Product Not Found', 404)
-  }
-    res.redirect('/campgrounds')
-}))
-
-
-//// review routes
-// review campground
-app.get('/campgrounds/:id/review/new',catchAsync(async(req,res)=>{
-  const {id} = req.params;
-    const foundCampground = await Campground.findById(id)
-    if(!foundCampground){
-      throw new ExpressError('Product Not Found', 404)
-  }
-    res.render('reviews/review',{foundCampground})
-}))
-
-app.post('/campgrounds/:id/review',validateReview, catchAsync(async(req,res)=>{
-  const {id} = req.params;
-  const foundCampground = await Campground.findById(id)
-  const newReview = new Review(req.body)
-  foundCampground.reviews.push(newReview)
-  await newReview.save()
-  await foundCampground.save()
-  res.redirect(`/campgrounds/${foundCampground.id}`)
-}))
-
-/// delete a review
-app.delete('/campgrounds/:id/review/:reviewid', catchAsync(async (req, res) => {
-  const {id,reviewid} = req.params;
-  const foundCampground = await Campground.findByIdAndUpdate(id)
-  if(!foundCampground){
-    throw new ExpressError('Product Not Found', 404)
-  }
-  const delReview = await Review.findByIdAndDelete(reviewid)
-  console.log(delReview)
-  res.redirect(`/campgrounds/${foundCampground.id}`)
-}))
-
- 
 app.all('*',(req,res,next)=>{
   next(new ExpressError('Page Not Found', 404))
 })
