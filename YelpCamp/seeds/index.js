@@ -32,6 +32,7 @@ const seedDB = async ()=>{
             price: radomPrice,
             title: `${randomTitle(descriptors)} ${randomTitle(places)}`,
             image: `https://picsum.photos/600/400?random=${Math.random()}`,
+            author:'67062a0318ab45be231d6c6e',
             description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas voluptatibus cum corporis. Perferendis laudantium ipsum, sit minus placeat natus commodi asperiores sapiente nihil possimus laboriosam deleniti modi minima voluptas necessitatibs Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fuga perspiciatis praesentium voluptatem nemo debitis nihil in obcaecati accusantium minus veritatis, dolorum, quia repellendus eius explicabo ex saepe voluptas vero tempora."
         })
         await camp.save()

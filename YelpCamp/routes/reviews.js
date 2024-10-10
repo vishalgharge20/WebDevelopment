@@ -4,30 +4,14 @@ const router = express.Router()
 const Review = require('../models/reviews')
 const catchAsync = require('../utils/catchAsync')
 const ExpressError = require('../utils/ExpressError')
-const {reviewSchema} = require('../schemas')
 const Campground = require('../models/campground') 
-
-
-
-
-
-//// middleware to validate JOI
-const validateReview = (req,res,next)=>{
-    const {error} = reviewSchema.validate(req.body)
-    if(error){
-      const msg = error.details.map(el => el.message).join(',')
-      throw new ExpressError(msg,400 )
-    }
-    else{
-      next()
-    }  
-  }
+const {isLoggedIn,validateReview,isReviewAuthor} = require('../middleware')
 
 
 
 //// review routes
 // review campground
-router.get('/campgrounds/:id/review/new',catchAsync(async(req,res)=>{
+router.get('/campgrounds/:id/review/new',isLoggedIn,catchAsync(async(req,res)=>{
     const {id} = req.params;
       const foundCampground = await Campground.findById(id)
       if(!foundCampground){
@@ -36,10 +20,11 @@ router.get('/campgrounds/:id/review/new',catchAsync(async(req,res)=>{
       res.render('reviews/review',{foundCampground})
   }))
   
-router.post('/campgrounds/:id/review',validateReview, catchAsync(async(req,res)=>{
+router.post('/campgrounds/:id/review',isLoggedIn,validateReview, catchAsync(async(req,res)=>{
     const {id} = req.params;
     const foundCampground = await Campground.findById(id)
     const newReview = new Review(req.body)
+    newReview.author = req.user._id
     foundCampground.reviews.push(newReview)
     await newReview.save()
     await foundCampground.save()
@@ -48,7 +33,7 @@ router.post('/campgrounds/:id/review',validateReview, catchAsync(async(req,res)=
   }))
   
   /// delete a review
-router.delete('/campgrounds/:id/review/:reviewid', catchAsync(async (req, res) => {
+router.delete('/campgrounds/:id/review/:reviewid',isLoggedIn,isReviewAuthor,catchAsync(async (req, res) => {
     const {id,reviewid} = req.params;
     const foundCampground = await Campground.findByIdAndUpdate(id)
     if(!foundCampground){

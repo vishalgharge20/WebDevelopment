@@ -3,21 +3,7 @@ const router = express.Router()
 const Campground = require('../models/campground')
 const catchAsync = require('../utils/catchAsync')
 const ExpressError = require('../utils/ExpressError')
-const {campgroundschema} = require('../schemas')
-
-
-//// middleware to validate JOI
-// //// using joi
-const validateCampground = (req,res,next)=>{
-    const {error} = campgroundschema.validate(req.body)
-    if(error){
-      const msg = error.details.map(el => el.message).join(',')
-      throw new ExpressError(msg,400 )
-    }
-    else{
-      next()
-    }  
-  }
+const {isLoggedIn,isAuthor,validateCampground} = require('../middleware')
 
 
 
@@ -34,7 +20,7 @@ router.get('/new',catchAsync(async(req,res)=>{
 }))
 
 /// create new campground using page
-router.post('/new', validateCampground, catchAsync(async(req,res)=>{
+router.post('/new', isLoggedIn,validateCampground, catchAsync(async(req,res)=>{
   //// server side validation using if
   // const { title, price, location, description, image } = req.body;
   //   // Check if any required field is missing
@@ -43,6 +29,7 @@ router.post('/new', validateCampground, catchAsync(async(req,res)=>{
   //   }
 
     const newCampground = new Campground(req.body)
+    newCampground.author = req.user._id
     await newCampground.save()
     req.flash('success','Successfully made a new campground')
     res.redirect(`/campgrounds/${newCampground.id}`)
@@ -51,42 +38,40 @@ router.post('/new', validateCampground, catchAsync(async(req,res)=>{
 //--> get campground by id
 router.get('/:id',catchAsync(async(req,res)=>{
     const {id} = req.params;
-    const foundCampground = await Campground.findById(id).populate('reviews')
+    const foundCampground = await Campground.findById(id).populate('reviews').populate('author').populate({ path: 'reviews', populate: { path: 'author' } })
     if(!foundCampground){
         req.flash('error','Campground not found!!!')
-    //   throw new ExpressError('Product Not Found', 404)
     res.redirect('/campgrounds')
   }
     res.render('campgrounds/show',{foundCampground})
 }))
 
+
+
 ///// go to the update page
-router.get('/:id/edit',catchAsync(async(req,res)=>{
-  const {id} = req.params;
-    const foundCampground = await Campground.findById(id)
-    if(!foundCampground){
-      throw new ExpressError('Product Not Found', 404)
-  }
+router.get('/:id/edit',isLoggedIn,isAuthor,catchAsync(async(req,res)=>{
+    const foundCampground = res.locals.foundCampground
     res.render('campgrounds/edit',{foundCampground})
 }))
 
 /// update in update page
-router.put('/:id',validateCampground,catchAsync(async(req,res)=>{
-  const {id} = req.params;
+router.put('/:id',isLoggedIn,isAuthor,validateCampground,catchAsync(async(req,res)=>{
+
     const updateCampground = await Campground.findByIdAndUpdate(id,req.body,{runValidators:true,new:true})
     if(!updateCampground){
       throw new ExpressError('Product Not Found', 404)
-  }
+    }
     req.flash('success','Successfully Updated campground')
     res.redirect('/campgrounds')
 }))
 
 ///  delete campground
-router.delete('/:id', catchAsync(async (req, res) => {
-  const {id} = req.params;
-    const deleteCampground = await Campground.findByIdAndDelete(id)
-    if(deleteCampground.deletedCount===0){
-      throw new AppError('Product Not Found', 404)
+router.delete('/:id', isLoggedIn,isAuthor,catchAsync(async (req, res) => {
+
+  const deleteCampground = await Campground.findByIdAndDelete(id)
+  if(deleteCampground.deletedCount===0){
+    req.flash('error','Page Not Found')
+    return res.redirect('/campgrounds')
   }
     req.flash('success','Successfully Deleted campground')
     res.redirect('/campgrounds')

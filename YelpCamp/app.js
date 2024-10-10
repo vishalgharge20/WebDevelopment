@@ -11,9 +11,16 @@ const {campgroundschema,reviewSchema} = require('./schemas')
 const Review = require('./models/reviews')
 const session = require('express-session')
 const flash = require('connect-flash')
+const User = require('./models/user') 
+// require passport
+const passport = require('passport')
+const localStrategy = require('passport-local').Strategy
+
+
 
 const campgroundRoutes = require('./routes/campgrounds')
 const reviewRoutes = require('./routes/reviews')
+const userRoutes = require('./routes/user')
 
 
 // override
@@ -61,22 +68,39 @@ const sessionConfig ={
   }
 }
 app.use(session(sessionConfig))
-
 //fash
 app.use(flash())
 
-/// middleware  for flash
+/// passport
+app.use(passport.initialize())
+app.use(passport.session())
+
+passport.use(new localStrategy(User.authenticate()))
+
+passport.serializeUser(User.serializeUser())
+passport.deserializeUser(User.deserializeUser())
+
+
+///fake user
+app.get('/fakeuser',async(req,res)=>{
+  const user = new User({email: 'vishal@test.com',username: 'vishal'})
+  const newUser = await User.register(user,'test')
+  res.send(newUser)
+})
+
+
+/// middleware  for flash and req.user
 app.use((req,res,next)=>{
+  // to check if user is signed in -> returns undefined it user is not signed in
+  res.locals.currentUser = req.user
   res.locals.success = req.flash('success')
   res.locals.error = req.flash('error')
   next()
 })
 
-
-
-
 app.use('/campgrounds',campgroundRoutes)
 app.use('/',reviewRoutes)
+app.use('/',userRoutes)
 
 
 app.get('/',(req,res)=>{

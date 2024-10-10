@@ -1,0 +1,22 @@
+          <!-- Review Button with Modal -->
+          <div>
+            <a href="#" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#reviewModal">Review</a>
+            <!-- Review Modal -->
+            <div class="modal fade" id="reviewModal" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Leave a Review</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form action="/campgrounds/<%= foundCampground.id %>/review" method="POST" class="needs-validation" novalidate>
+                                <input type="range" class="form-range mb-3" name="rating" min="1" max="5">
+                                <textarea class="form-control mb-3" name="body" rows="3" placeholder="Write review..." required></textarea>
+                                <button type="submit" class="btn btn-success w-100">Submit</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
