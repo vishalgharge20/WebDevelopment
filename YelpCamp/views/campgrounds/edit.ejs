@@ -3,7 +3,7 @@
 <div class="row justify-content-center">
     <h1 class="text-center mb-4">Update Campground</h1>
     <div class="col-md-4"> <!-- Bootstrap will manage width -->
-        <form action="/campgrounds/<%=foundCampground.id%>?_method=PUT" method="post" class="border p-4 needs-validation" novalidate> <!-- Added border and padding -->
+        <form action="/campgrounds/<%=foundCampground.id%>?_method=PUT" method="post" class="border p-4 needs-validation" novalidate enctype="multipart/form-data"> <!-- Added border and padding -->
             <div class="mb-3"> <!-- Margin bottom for spacing -->
                 <label for="title" class="form-label">Enter Title:</label>
                 <input type="text" class="form-control" name="title" id="title" placeholder="Title" value="<%=foundCampground.title%>" required> 
@@ -34,16 +34,28 @@
                     Please Enter a Valid Price
                 </div>
             </div>
-            <div class="mb-3"> <!-- Margin bottom for spacing -->
-                <label for="image" class="form-label">Image URL:</label>
-                <input type="text" class="form-control" name="image" id="image" placeholder="Image URL" value="<%=foundCampground.image%>" required> 
-                <div class="valid-feedback">
-                    Looks good!
-                </div>
-                <div class="invalid-feedback">
-                    Please Enter a image url
+            
+            <div class="mb-3">
+                <label for="formFile" class="form-label">Upload Image:</label>
+                <div class="custom-file">
+                    <input class="custom-file-input" type="file" name="image" id="img" multiple required>
+                    <label class="custom-file-label" for="img">Choose files</label>
                 </div>
             </div>
+
+            <!-- to delete images -->
+            <div class="mb-3 row">
+                <% foundCampground.images.forEach(function(img, i) { %>
+                    <div>
+                        <img src="<%= img.thumbnail %>" alt="camp">
+                    </div>
+                <div class="form-check-inline">
+                <input type="checkbox" id="image-<%= i %>" name="deleteImages[]" value="<%= img.filename %>">
+                </div>
+                <label for="image-<%=i%>">Delete</label>
+                <% }) %>               
+            </div>
+            
             <div class="mb-3"> <!-- Margin bottom for spacing -->
                 <label for="description" class="form-label">Enter Description:</label>
                 <input type="text" class="form-control" name="description" id="description" placeholder="Description" value="<%=foundCampground.description%>" required>

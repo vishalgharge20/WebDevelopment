@@ -1,3 +1,11 @@
+if(process.env.NODE_ENV !== "production"){
+  require('dotenv').config()
+}
+
+//.env 
+// console.log(process.env.secret)
+
+
 const express = require('express');
 const mongoose = require('mongoose')
 const app = express();
@@ -15,7 +23,6 @@ const User = require('./models/user')
 // require passport
 const passport = require('passport')
 const localStrategy = require('passport-local').Strategy
-
 
 
 const campgroundRoutes = require('./routes/campgrounds')
@@ -125,3 +132,4 @@ app.use((err, req, res, next) => {
 app.listen(3000,()=>{
   console.log('Serving on port 3000')
 })
+

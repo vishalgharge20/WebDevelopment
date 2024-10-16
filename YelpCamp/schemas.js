@@ -5,8 +5,9 @@ module.exports.campgroundschema = joi.object({
     title: joi.string().min(3).required(),
     location: joi.string().min(3).required(),
     price: joi.number().integer().min(0).required(),
-    image: joi.string().required(),
-    description: joi.string().required()      
+    // image: joi.string().required(),
+    description: joi.string().required(),
+    deleteImages:  joi.array()
   })
 
 

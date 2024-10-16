@@ -32,7 +32,8 @@ module.exports.validateCampground = (req,res,next)=>{
     const {error} = campgroundschema.validate(req.body)
     if(error){
       const msg = error.details.map(el => el.message).join(',')
-      throw new ExpressError(msg,400 )
+      req.flash('error', msg);
+      return res.redirect('back');
     }
     else{
       next()

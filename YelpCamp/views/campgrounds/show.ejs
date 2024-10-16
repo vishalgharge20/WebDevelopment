@@ -1,8 +1,36 @@
 <% layout('/layouts/boilerplate') %>
+
+<link rel="stylesheet" href="/stylesheets/stars.css" >
+
+
 <div class="row justify-content-center">
     <div class="col-md-6"> <!-- Adjusts width of the card to be responsive -->
         <div class="card mb-3" style="width: 100%; height: auto;"> <!-- 100% width and auto height for responsiveness -->
-            <img src="<%= foundCampground.image %>" class="card-img-top" alt="camp" style="height: 300px; object-fit: cover;"> <!-- Fixed height and cover for image -->
+            
+            <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                  <% foundCampground.images.forEach((image, index) => { %>
+                    <div class="carousel-item <%= index === 0 ? 'active' : '' %>">
+                      <img src="<%= image.url %>" class="d-block w-100" alt="camp">
+                    </div>
+                  <% }) %>
+                </div>
+
+                <% if(foundCampground.images.length>1){ %> 
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Previous</span>
+                </button>
+              
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Next</span>
+                </button>
+                <% } %>
+              </div>
+                
+              
+            <!-- <img src="<%= foundCampground.image %>" class="card-img-top" alt="camp" style="height: 300px; object-fit: cover;"> Fixed height and cover for image -->
             <div class="card-body">
                 <h5 class="card-title"><h2><%= foundCampground.title %></h2></h5>
                 <p class="card-text"><%= foundCampground.description %></p>
@@ -23,11 +51,14 @@
                     <ul class="list-group">
                         <% for (let review of foundCampground.reviews) { %>
                             <li class="list-group-item">
+                                <div><strong>Author: <%= review.author ? review.author.username : 'Unknown Author' %></strong></div>
+                                <!-- display star Rating -->
+                                <strong>Rating:</strong>
+                                <p class="starability-result mt-2" data-rating="<%= review.rating %>">
+                                  Rated: <%= review.rating %> stars
+                                </p>
                                 <strong>Review:</strong> <%= review.body %>
                                 <br>
-                                <strong>Rating:</strong> <%= review.rating %> ⭐
-                                <br><br>
-                                <p>Author: <%= review.author ? review.author.username : 'Unknown Author' %></p>
                                 <% if(currentUser && review.author && review.author.equals(currentUser._id)){ %>
                                     <form action="/campgrounds/<%= foundCampground.id %>/review/<%= review._id %>?_method=DELETE" method="POST">
                                         <button class="btn btn-warning" type="submit">Delete Review</button>
@@ -52,3 +83,4 @@
         </div>
     </div>
 </div>
+

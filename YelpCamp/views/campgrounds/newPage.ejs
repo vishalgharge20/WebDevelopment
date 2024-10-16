@@ -3,7 +3,7 @@
 <div class="row justify-content-center">
     <h1 class="text-center mb-4">New Campground</h1>
     <div class="col-md-4"> <!-- Bootstrap will manage width -->
-        <form action="/campgrounds/new" method="post" class="border p-4 needs-validation " novalidate> <!-- Added border and padding -->
+        <form action="/campgrounds/new" method="post" class="border p-4 needs-validation " novalidate enctype="multipart/form-data"> <!-- Added border and padding -->
             <div class="mb-3"> <!-- Margin bottom for spacing -->
                 <label for="title" class="form-label">Enter Title:</label>
                 <input type="text" class="form-control" name="title" id="title" placeholder="Title" required> 
@@ -34,16 +34,19 @@
                     Please Enter a Valid Price
                 </div>
             </div>
-            <div class="mb-3"> <!-- Margin bottom for spacing -->
-                <label for="imageUrl" class="form-label">Image Url:</label>
-                <input type="text" class="form-control" name="image" id="imageUrl" placeholder="Image URL" required>
-                <div class="valid-feedback">
-                    Looks good!
-                </div>
-                <div class="invalid-feedback">
-                    Please Enter a image url
+        
+
+
+            <div class="mb-3">
+                <label for="formFile" class="form-label">Upload Image:</label>
+                <div class="custom-file">
+                    <input class="custom-file-input" type="file" name="image" id="img" multiple required>
+                    <label class="custom-file-label" for="img">Choose files</label>
                 </div>
             </div>
+
+
+
             <div class="mb-3"> <!-- Margin bottom for spacing -->
                 <label for="description" class="form-label">Enter Description:</label>
                 <input type="text" class="form-control" name="description" id="description" placeholder="Description" required>
