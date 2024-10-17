@@ -1,20 +1,39 @@
 <% layout('/layouts/boilerplate') %>
-
+<style>
+  body {
+    background-image: url('https://res.cloudinary.com/dwl5vbflp/image/upload/v1729165136/YelpCamp/defaults/fzvfj4krmepawgzjkw1v.jpg');
+    background-size: cover; /* Make the background image cover the entire body */
+    background-repeat: no-repeat; /* Prevent the image from repeating */
+  }
+  .login-title {
+    font-size: 2rem; /* Larger font size */
+    font-weight: 600; /* Bold weight */
+    color: #0056b3; /* Darker shade of blue */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Subtle shadow for depth */
+  }
+  .card {
+    background-color: rgba(255, 255, 255, 0.7); /* Make card transparent */
+    border-radius: 12px; /* Rounded corners */
+  }
+</style>
 <div class="container d-flex justify-content-center align-items-center vh-100">
-    <div class="border rounded p-5" style="width: 450px; height: 350px;">
-      <h1 class="text-center">Login</h1>
-      <form action="/login" method="post" class="needs-validation h-100" novalidate>
-        <div class="mb-4">
-          <label for="username" class="form-label">Username:</label>
-          <input type="text" class="form-control" name="username" id="username" placeholder="Enter your username" required>
-          <div class="invalid-feedback">Please Enter a UserName</div>
-        </div>
-        <div class="mb-4">
-          <label for="password" class="form-label">Password:</label>
-          <input type="password" class="form-control" name="password" id="password" placeholder="Enter your password" required>
-          <div class="invalid-feedback">Please Enter a Password</div>
-        </div>
-        <button type="submit" class="btn btn-primary w-100">Register</button>
-      </form>
-    </div>
+  <div class="card shadow-lg p-4" style="width: 400px;">
+    <h4 class="text-center mb-4 login-title">Login</h4>
+    <form action="/login" method="post" class="needs-validation" novalidate>
+      <div class="mb-3">
+        <label for="username" class="form-label">Username:</label>
+        <input type="text" class="form-control" name="username" id="username" placeholder="Enter your username" required>
+        <div class="invalid-feedback">Please enter a username.</div>
+      </div>
+      <div class="mb-3">
+        <label for="password" class="form-label">Password:</label>
+        <input type="password" class="form-control" name="password" id="password" placeholder="Enter your password" required>
+        <div class="invalid-feedback">Please enter a password.</div>
+      </div>
+      <button type="submit" class="btn btn-primary w-100 mt-3">Login</button>
+      <div class="text-center mt-3">
+        <a href="/register" class="text-muted small">Don't have an account? Register</a>
+      </div>
+    </form>
   </div>
+</div>

@@ -7,6 +7,8 @@
     <div class="col-md-6"> <!-- Adjusts width of the card to be responsive -->
         <div class="card mb-3" style="width: 100%; height: auto;"> <!-- 100% width and auto height for responsiveness -->
             
+            <div id="map" class="card mb-2" style="width: 100%; height: 300px; padding-bottom: 5px;"></div>
+
             <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-inner">
                   <% foundCampground.images.forEach((image, index) => { %>
@@ -83,4 +85,13 @@
         </div>
     </div>
 </div>
+
+
+ <!-- script for map -->
+ <script>
+    const mapToken = '<%- process.env.MAPBOX_TOKEN %>';
+    const foundCampground = <%- JSON.stringify(foundCampground) %>; // No quotes around the JSON
+</script>
+<script src="/javascripts/showPageMap.js"></script>
+
 
