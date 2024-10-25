@@ -4,16 +4,19 @@
 
 
 <div class="d-flex justify-content-center align-items-center" style="height: 100vh;">
-    <div style="width: 400px; height: 400px; border: 2px solid black; padding: 20px; border-radius: 10px;">
+    <div style="width: 400px; height: 430px; border: 2px solid black; padding: 20px; border-radius: 10px;">
         <form action="/campgrounds/<%= foundCampground.id %>/review" method="POST" class="needs-validation" novalidate>
             <div class="mb-3">
                 <!-- <label for="rating" class="form-label">Rating</label>
                 <input type="range" class="form-range" name="rating" min="1" max="5" required> -->
                 
-                <fieldset class="starability-slot">
+                <fieldset class="starability-basic">
                     <legend>Rating:</legend>
-                    <input type="radio" id="second-rate1" name="rating" value="1" />
+                    <input type="radio" id="second-rate1" name="rating" value="1" required checked/>
                     <label for="second-rate1" title="Terrible">1 star</label>
+                    <div class="invalid-feedback">
+                        Please select Rating
+                    </div>  
                     <input type="radio" id="second-rate2" name="rating" value="2" />
                     <label for="second-rate2" title="Not good">2 stars</label>
                     <input type="radio" id="second-rate3" name="rating" value="3" />
@@ -34,3 +37,4 @@
         </form>
     </div>
 </div>
+
