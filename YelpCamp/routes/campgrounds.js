@@ -15,6 +15,34 @@ const upload = multer({storage})
 //--> get all campgrounds
 router.get('/',catchAsync(campgroundsControllers.index))
 
+
+
+router.get('/search', catchAsync(async (req, res) => {
+    const query = req.query.q;
+  
+    try {
+      const foundCampgrounds = await Campground.find({ 
+        //Using $or for Broader Search
+        $or: [
+          { title: { $regex: query, $options: 'i' } }, // Partial and case-insensitive match for title
+          { location: { $regex: query, $options: 'i' } } // Partial and case-insensitive match for location
+        ]
+      });
+  
+      if (foundCampgrounds.length > 0) {
+        res.render('campgrounds/index', { campgrounds: foundCampgrounds });
+      } else {
+        req.flash('error','Campground Not Found')
+        return res.redirect('/campgrounds')
+      }
+    } catch (err) {
+      console.error(err);
+      res.status(500).send('Server error');
+    }
+  }));
+
+
+
 ///-------> order matters <-----------///
 // get new campground page
 router.get('/new',catchAsync(campgroundsControllers.getNewForm))

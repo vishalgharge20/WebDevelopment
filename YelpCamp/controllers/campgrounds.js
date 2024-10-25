@@ -84,7 +84,7 @@ module.exports.updateCampground = async(req,res)=>{
 
 
 module.exports.deleteCampground = async (req, res) => {
-
+    const {id} = req.params;
     const deleteCampground = await Campground.findByIdAndDelete(id)
     if(deleteCampground.deletedCount===0){
       req.flash('error','Page Not Found')
