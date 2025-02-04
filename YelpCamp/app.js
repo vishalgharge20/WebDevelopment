@@ -24,6 +24,8 @@ const User = require('./models/user')
 const passport = require('passport')
 const localStrategy = require('passport-local').Strategy
 
+const admin = require('firebase-admin');
+const serviceAccount = require('./firebase-adminsdk.json'); // Update with the correct path
 
 const campgroundRoutes = require('./routes/campgrounds')
 const reviewRoutes = require('./routes/reviews')
@@ -117,6 +119,8 @@ app.get('/',(req,res)=>{
 app.all('*',(req,res,next)=>{
   next(new ExpressError('Page Not Found', 404))
 })
+
+
 
 
 // Error handling middleware

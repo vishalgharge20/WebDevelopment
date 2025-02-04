@@ -1,0 +1,14 @@
+/* Styling for each ColorBoxSingle item */
+.ColorBoxSingle {
+    width: 100px; /* Fixed width for each box */
+    height: 100px; /* Fixed height for each box */
+    display: flex; /* Flex to center content inside */
+    align-items: center; /* Vertical centering of text */
+    justify-content: center; /* Horizontal centering of text */
+    cursor: pointer;
+    border: 2px solid black;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}

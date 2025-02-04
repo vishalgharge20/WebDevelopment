@@ -1,0 +1,10 @@
+/* Container for all ColorBoxSingle items */
+.ColorBox {
+    display: grid; 
+    grid-template-columns: repeat(4, 1fr); /* 4 equal-width columns */
+    gap: 10px; /* Adds space between the boxes */
+    padding: 20px;
+    justify-items: center; /* Centers items horizontally in their grid cell */
+    align-items: center; /* Centers items vertically in their grid cell */
+    background-color: #f0f0f0; /* Optional background for the container */
+}

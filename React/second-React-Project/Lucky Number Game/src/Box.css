@@ -1,0 +1,7 @@
+.Box {
+    width: 100px; /* Set box width */
+    height: 100px; /* Set box height */
+    border: 2px solid black; /* Border for visibility */
+    cursor: pointer; /* Indicate clickable */
+  }
+

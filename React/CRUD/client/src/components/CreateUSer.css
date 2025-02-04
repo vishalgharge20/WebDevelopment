@@ -1,0 +1,32 @@
+.create-user-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Center vertically */
+    align-items: center;     /* Center horizontally */
+    height: 100vh;           /* Full viewport height */
+  }
+  
+  h2 {
+    margin-bottom: 20px;     /* Space between the title and the form */
+  }
+  
+  /* Optional: Styling the form container */
+  .form-container {
+    width: 30%;   
+    padding: 20px;           /* Padding inside the form */
+    border: 1px solid #ddd; /* Border for styling */
+    border-radius: 8px;      /* Rounded corners */
+  }
+  
+  button {
+    margin-top: 20px;        /* Space between the button and form fields */
+  }
+  
+  button:focus {
+    outline: none;           /* Remove the default outline when button is focused */
+  }
+
+  .input-fields{
+    margin-bottom: 10px;
+  }
+  

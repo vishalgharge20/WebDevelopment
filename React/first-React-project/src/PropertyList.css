@@ -1,0 +1,7 @@
+.PropertyList {
+    display: flex; /* Use Flexbox for layout */
+    flex-wrap: wrap; /* Allow cards to wrap to the next line */
+    justify-content: space-between; /* Even spacing between cards */
+    gap: 20px; /* Add consistent spacing between cards */
+    padding: 20px; /* Add padding around the container */
+}

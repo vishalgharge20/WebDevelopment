@@ -8,6 +8,14 @@ const userControllers = require('../controllers/user')
 
 
 
+
+// Route for verifying phone
+router.get('/verify-phone', userControllers.renderVerifyPhoneForm);
+router.post('/verify-phone', catchAsync(userControllers.postVerifyPhone));
+
+
+
+
 // get register form
 router.get('/register',userControllers.renderRegisterForm)
 

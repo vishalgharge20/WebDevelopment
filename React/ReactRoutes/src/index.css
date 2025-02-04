@@ -1,0 +1,123 @@
+*{
+  margin: 10px;
+  padding: 0px;
+  box-sizing: border-box;
+  font-family: 'poppins','sans-serif';
+}
+
+a{
+  text-decoration: none;
+  color: inherit;
+}
+
+.NavBar{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 8px;
+}
+
+.NavBar ul{
+  padding: 10px, 30px;
+  border-radius: 30px;
+  box-shadow: 0 0 30px 0 rgba(0,0,0,0.1);
+}
+
+a.active{
+  color: red;
+}
+
+.NavBar ul li{
+  display: inline-block;
+  padding: 5px 10px;
+  margin: 0 10px;  
+}
+
+.NavBar button{
+  background: #000;
+  color: #fff;
+  padding: 12px 25px;
+  border: 0;
+  outline: 0;
+  border-radius: 30px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.NavBar img{
+  width: 120px;
+  height: 100px;
+}
+
+.container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 80vh;
+}
+
+.container h1{
+  font-size: 70px;
+  font-weight: 500;
+}
+
+.contact-buttons{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding-bottom: 20px;
+  gap: 20px;
+}
+
+.Jobs{
+  padding: 10px 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.Jobs a{
+  flex: 1;
+  text-decoration: none;
+  padding: 10px;
+  background: #efefef;
+  color: #000;
+}
+
+
+.JobDetails{
+  padding: 20px 0;
+}
+
+.JobDetails b{
+  padding: 0;
+  margin: 0;
+}
+
+.JobDetails p{
+  max-width: 800px;
+  padding: 2px 0;
+  line-height: 1.5; /* Adds better readability for multi-line text */
+  text-align: justify; /* Aligns text evenly on both left and right edges */
+}
+
+.JobDetails button{
+  background: #000;
+  color: #fff;
+  border: 0;
+  outline: 0;
+  padding: 5px 10px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.Error{
+  padding: 30px 0;
+  margin: 0;
+}
+
+

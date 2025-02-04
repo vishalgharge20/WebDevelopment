@@ -15,6 +15,25 @@
     background-color: rgba(255, 255, 255, 0.7); /* Make card transparent */
     border-radius: 12px; /* Rounded corners */
   }
+  .input-group {
+    display: flex;
+    align-items: center;
+  }
+  .country-code {
+    padding: 10px;
+    background: #e9ecef;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem 0 0 0.25rem;
+    margin-right: 5px; /* Add spacing after country code */
+  }
+  .phone-input {
+    flex: 1;
+    border-radius: 0 0.25rem 0.25rem 0; /* Match border radius */
+    border: 1px solid #ced4da; /* Match border styling */
+  }
+  .form-control {
+    height: calc(2.5rem + 2px); /* Ensures uniform height */
+  }
 </style>
 <div class="container d-flex justify-content-center align-items-center vh-100">
   <div class="card shadow-lg p-4" style="width: 400px;">
@@ -30,6 +49,11 @@
         <input type="email" class="form-control" name="email" id="email" placeholder="Enter your email" required>
         <div class="invalid-feedback">Please enter a valid email.</div>
       </div>
+      <div class="mb-3">
+        <label for="phone" class="form-label">Phone Number:</label>
+        <input type="tel" class="form-control" name="phone" id="phone" placeholder="Enter your 10-digit phone number" required maxlength="10" pattern="\d{10}" title="Please enter a valid 10-digit phone number">
+        <div class="invalid-feedback">Please enter a valid Phone Number.</div>
+    </div>
       <div class="mb-3">
         <label for="password" class="form-label">Password:</label>
         <input type="password" class="form-control" name="password" id="password" placeholder="Enter your password" required>

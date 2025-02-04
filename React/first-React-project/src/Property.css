@@ -1,0 +1,28 @@
+.Property {
+    background-color: #f9f9f9; /* Light background for the card */
+    border: 1px solid #ddd; /* Subtle border for the card */
+    border-radius: 8px; /* Rounded corners */
+    padding: 20px; /* Internal spacing */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+    width: 350px; /* Fixed width */
+    height: 200px; /* Fixed height */
+    font-family: Arial, sans-serif; /* Clean font */
+    display: flex; /* Flex layout inside card */
+    flex-direction: column; /* Stack content vertically */
+    justify-content: center; /* Center content vertically */
+    align-items: center; /* Center content horizontally */
+  }
+  
+  .Property h2 {
+    color: #333; /* Dark color for the heading */
+    font-size: 1.5em; /* Slightly larger font size */
+    margin-bottom: 10px; /* Space below the heading */
+    text-transform: capitalize; /* Capitalizes the first letter of each word */
+    text-align: center; /* Center-align text */
+  }
+  
+  .Property h3 {
+    color: #555; /* Slightly lighter color for secondary text */
+    margin: 5px 0; /* Consistent spacing */
+    text-align: center; /* Center-align text */
+  }

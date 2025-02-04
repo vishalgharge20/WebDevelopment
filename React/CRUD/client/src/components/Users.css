@@ -1,0 +1,25 @@
+/* users.css */
+
+/* Full-screen container that uses Flexbox to center content */
+.full-screen-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh; /* Full viewport height */
+    background-color: #007bff; /* Bootstrap primary color */
+}
+
+/* Inner container with a width of 50% and a white background */
+.table-container {
+    width: 50%;
+    background-color: white;
+    border-radius: 8px; /* Rounded corners */
+    padding: 16px; /* Padding inside the container */
+}
+
+.del-button{
+    margin-top: 0;
+    margin-left: 20px;
+}
+

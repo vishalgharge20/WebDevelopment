@@ -1,0 +1,20 @@
+.Dice {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 20px;
+  }
+
+
+  h2, h3 {
+    text-align: center;
+    font-family: "Arial", sans-serif;
+    margin: 10px 0;
+  }
+  
+  
+  h3[style*="color: green"] {
+    font-size: 1.5rem;
+    font-weight: bold;
+    animation: pulse 1s infinite;
+  }

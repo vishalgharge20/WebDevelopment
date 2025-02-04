@@ -1,0 +1,12 @@
+.BoxGrid {
+    display: grid; /* Use grid layout for neat organization */
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); /* Responsive column sizing */
+    gap: 10px; /* Space between boxes */
+    max-width: 500px; /* Limit grid width */
+    margin: 20px auto; /* Center the grid on the page */
+    padding: 10px; /* Add some padding around the grid */
+    border: 2px solid #ccc; /* Optional: Add a border around the grid */
+    border-radius: 8px; /* Optional: Rounded corners for the grid container */
+    background-color: #f9f9f9; /* Optional: Light background color for contrast */
+  }
+  

@@ -1,0 +1,34 @@
+{
+    "Jobs": [
+        {
+            "id":1,
+            "Title": "Sr. React Developer",
+            "Salary": 50000,
+            "Location": "London"
+        },
+        {
+            "id":2,
+            "Title": "Sr. React Developer",
+            "Salary": 60000,
+            "Location": "Paris"
+        },
+        {
+            "id":3,
+            "Title": "Jr. React Developer",
+            "Salary": 30000,
+            "Location": "Italy"
+        },
+        {
+            "id":4,
+            "Title": "Full Stack Developer",
+            "Salary": 50000,
+            "Location": "India"
+        },
+        {
+            "id":3,
+            "Title": "Jr. Java Developer",
+            "Salary": 30000,
+            "Location": "Australia"
+        }
+    ]
+}
